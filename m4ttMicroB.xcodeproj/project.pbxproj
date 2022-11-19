@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		0425235629282F1F00D199E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425235529282F1F00D199E3 /* AppDelegate.swift */; };
 		0425235829282F1F00D199E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425235729282F1F00D199E3 /* SceneDelegate.swift */; };
-		0425235A29282F1F00D199E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425235929282F1F00D199E3 /* ViewController.swift */; };
 		0425235D29282F1F00D199E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0425235B29282F1F00D199E3 /* Main.storyboard */; };
 		0425235F29282F2300D199E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0425235E29282F2300D199E3 /* Assets.xcassets */; };
 		0425236229282F2300D199E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0425236029282F2300D199E3 /* LaunchScreen.storyboard */; };
+		0425236E292831E500D199E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425236D292831E500D199E3 /* MainViewController.swift */; };
+		04252370292831F900D199E3 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425236F292831F900D199E3 /* FavoritesViewController.swift */; };
+		0447441729285768004B07B5 /* Extensions + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447441629285768004B07B5 /* Extensions + UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0425235229282F1F00D199E3 /* m4ttMicroB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = m4ttMicroB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0425235529282F1F00D199E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0425235729282F1F00D199E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0425235929282F1F00D199E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0425235C29282F1F00D199E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0425235E29282F2300D199E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0425236129282F2300D199E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0425236329282F2300D199E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0425236D292831E500D199E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0425236F292831F900D199E3 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		0447441629285768004B07B5 /* Extensions + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,57 @@
 		0425235429282F1F00D199E3 /* m4ttMicroB */ = {
 			isa = PBXGroup;
 			children = (
-				0425235529282F1F00D199E3 /* AppDelegate.swift */,
-				0425235729282F1F00D199E3 /* SceneDelegate.swift */,
-				0425235929282F1F00D199E3 /* ViewController.swift */,
-				0425235B29282F1F00D199E3 /* Main.storyboard */,
+				0425236C292831AE00D199E3 /* System */,
+				042523692928315900D199E3 /* Models */,
+				0425236A2928316600D199E3 /* Views */,
+				0425236B2928317300D199E3 /* Controllers */,
+				0447441529285711004B07B5 /* Extensions */,
 				0425235E29282F2300D199E3 /* Assets.xcassets */,
-				0425236029282F2300D199E3 /* LaunchScreen.storyboard */,
 				0425236329282F2300D199E3 /* Info.plist */,
 			);
 			path = m4ttMicroB;
+			sourceTree = "<group>";
+		};
+		042523692928315900D199E3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0425236A2928316600D199E3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0425235B29282F1F00D199E3 /* Main.storyboard */,
+				0425236029282F2300D199E3 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0425236B2928317300D199E3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0425236D292831E500D199E3 /* MainViewController.swift */,
+				0425236F292831F900D199E3 /* FavoritesViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0425236C292831AE00D199E3 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				0425235529282F1F00D199E3 /* AppDelegate.swift */,
+				0425235729282F1F00D199E3 /* SceneDelegate.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		0447441529285711004B07B5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0447441629285768004B07B5 /* Extensions + UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +184,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0425235A29282F1F00D199E3 /* ViewController.swift in Sources */,
+				0425236E292831E500D199E3 /* MainViewController.swift in Sources */,
 				0425235629282F1F00D199E3 /* AppDelegate.swift in Sources */,
+				04252370292831F900D199E3 /* FavoritesViewController.swift in Sources */,
 				0425235829282F1F00D199E3 /* SceneDelegate.swift in Sources */,
+				0447441729285768004B07B5 /* Extensions + UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,12 +346,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ua.m4ttsoft.m4ttMicroB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -325,12 +373,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ua.m4ttsoft.m4ttMicroB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
