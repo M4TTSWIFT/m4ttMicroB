@@ -14,7 +14,10 @@
 		0425236229282F2300D199E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0425236029282F2300D199E3 /* LaunchScreen.storyboard */; };
 		0425236E292831E500D199E3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425236D292831E500D199E3 /* MainViewController.swift */; };
 		04252370292831F900D199E3 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425236F292831F900D199E3 /* FavoritesViewController.swift */; };
-		0447441729285768004B07B5 /* Extensions + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447441629285768004B07B5 /* Extensions + UIViewController.swift */; };
+		044CBC1229293E62003792B7 /* ShowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044CBC1129293E62003792B7 /* ShowTableViewCell.swift */; };
+		048B86DA29291BA400B283E0 /* ShowsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B86D929291BA400B283E0 /* ShowsModel.swift */; };
+		048BB1AF29299AE100682E8C /* ShowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048BB1AE29299AE100682E8C /* ShowTableViewCell.xib */; };
+		5C30D7A12DFF0448D6D6D9CD /* Pods_m4ttMicroB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C480B00FA8610FC1639D990F /* Pods_m4ttMicroB.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +30,12 @@
 		0425236329282F2300D199E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0425236D292831E500D199E3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0425236F292831F900D199E3 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		0447441629285768004B07B5 /* Extensions + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIViewController.swift"; sourceTree = "<group>"; };
+		044CBC1129293E62003792B7 /* ShowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTableViewCell.swift; sourceTree = "<group>"; };
+		048B86D929291BA400B283E0 /* ShowsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsModel.swift; sourceTree = "<group>"; };
+		048BB1AE29299AE100682E8C /* ShowTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowTableViewCell.xib; sourceTree = "<group>"; };
+		3DEBD58038358593DF15FAE7 /* Pods-m4ttMicroB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-m4ttMicroB.release.xcconfig"; path = "Target Support Files/Pods-m4ttMicroB/Pods-m4ttMicroB.release.xcconfig"; sourceTree = "<group>"; };
+		C480B00FA8610FC1639D990F /* Pods_m4ttMicroB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_m4ttMicroB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE88B7D2E758E2837C5D90E9 /* Pods-m4ttMicroB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-m4ttMicroB.debug.xcconfig"; path = "Target Support Files/Pods-m4ttMicroB/Pods-m4ttMicroB.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C30D7A12DFF0448D6D6D9CD /* Pods_m4ttMicroB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +55,8 @@
 			children = (
 				0425235429282F1F00D199E3 /* m4ttMicroB */,
 				0425235329282F1F00D199E3 /* Products */,
+				F1ED2F79032E5279CAAD42E6 /* Pods */,
+				7A3A5FFBF57A96290B4C9E07 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,7 +75,7 @@
 				042523692928315900D199E3 /* Models */,
 				0425236A2928316600D199E3 /* Views */,
 				0425236B2928317300D199E3 /* Controllers */,
-				0447441529285711004B07B5 /* Extensions */,
+				044CBC1029293E33003792B7 /* Cells */,
 				0425235E29282F2300D199E3 /* Assets.xcassets */,
 				0425236329282F2300D199E3 /* Info.plist */,
 			);
@@ -74,6 +85,7 @@
 		042523692928315900D199E3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				048B86D929291BA400B283E0 /* ShowsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -105,12 +117,30 @@
 			path = System;
 			sourceTree = "<group>";
 		};
-		0447441529285711004B07B5 /* Extensions */ = {
+		044CBC1029293E33003792B7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				0447441629285768004B07B5 /* Extensions + UIViewController.swift */,
+				044CBC1129293E62003792B7 /* ShowTableViewCell.swift */,
+				048BB1AE29299AE100682E8C /* ShowTableViewCell.xib */,
 			);
-			path = Extensions;
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7A3A5FFBF57A96290B4C9E07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C480B00FA8610FC1639D990F /* Pods_m4ttMicroB.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F1ED2F79032E5279CAAD42E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE88B7D2E758E2837C5D90E9 /* Pods-m4ttMicroB.debug.xcconfig */,
+				3DEBD58038358593DF15FAE7 /* Pods-m4ttMicroB.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,9 +150,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0425236629282F2300D199E3 /* Build configuration list for PBXNativeTarget "m4ttMicroB" */;
 			buildPhases = (
+				BE63A55655560318A9CC97FC /* [CP] Check Pods Manifest.lock */,
 				0425234E29282F1F00D199E3 /* Sources */,
 				0425234F29282F1F00D199E3 /* Frameworks */,
 				0425235029282F1F00D199E3 /* Resources */,
+				3C1BF93D5B813D0FDE516A9A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,11 +205,54 @@
 			files = (
 				0425236229282F2300D199E3 /* LaunchScreen.storyboard in Resources */,
 				0425235F29282F2300D199E3 /* Assets.xcassets in Resources */,
+				048BB1AF29299AE100682E8C /* ShowTableViewCell.xib in Resources */,
 				0425235D29282F1F00D199E3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C1BF93D5B813D0FDE516A9A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-m4ttMicroB/Pods-m4ttMicroB-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-m4ttMicroB/Pods-m4ttMicroB-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-m4ttMicroB/Pods-m4ttMicroB-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE63A55655560318A9CC97FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-m4ttMicroB-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0425234E29282F1F00D199E3 /* Sources */ = {
@@ -186,9 +261,10 @@
 			files = (
 				0425236E292831E500D199E3 /* MainViewController.swift in Sources */,
 				0425235629282F1F00D199E3 /* AppDelegate.swift in Sources */,
+				044CBC1229293E62003792B7 /* ShowTableViewCell.swift in Sources */,
+				048B86DA29291BA400B283E0 /* ShowsModel.swift in Sources */,
 				04252370292831F900D199E3 /* FavoritesViewController.swift in Sources */,
 				0425235829282F1F00D199E3 /* SceneDelegate.swift in Sources */,
-				0447441729285768004B07B5 /* Extensions + UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +406,7 @@
 		};
 		0425236729282F2300D199E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE88B7D2E758E2837C5D90E9 /* Pods-m4ttMicroB.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -357,6 +434,7 @@
 		};
 		0425236829282F2300D199E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DEBD58038358593DF15FAE7 /* Pods-m4ttMicroB.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
