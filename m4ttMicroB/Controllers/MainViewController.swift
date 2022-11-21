@@ -18,35 +18,32 @@ class MainViewController: UIViewController {
     
     //MARK: - Variebles and constants data:
     
-    var showsDataModel = [ShowsModel]()
-    
+    // Model:
+    var showsData = [ShowsModel]()
+    // SearchBar:
+    var filteredShowsData: [ShowsModel]!
+    // UINib:
+    private let nib = UINib(nibName: "ShowTableViewCell", bundle: nil)
     // URL Session:
-    
-    // to many items are here: "https://api.tvmaze.com/schedule/full"
-    let dataURL = "https://api.tvmaze.com/schedule/full"
+    private let dataURL = "https://api.tvmaze.com/schedule" // U can add/delete "/full" to more data
     
     
     //MARK: - ViewDidLoad:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mainTableView.register(UINib(nibName: "ShowTableViewCell",
-                                          bundle: nil),
-                                    forCellReuseIdentifier: "ShowTableViewCell")
-        self.mainTableView.delegate = self
-        self.mainTableView.dataSource = self
         fetchData()
         activityIndicator.startAnimating()
-        
-        //        mainSearchBar.delegate      = self
-        
+        filteredShowsData = showsData
+        mainTableView.register(nib, forCellReuseIdentifier: "ShowTableViewCell")
+        mainTableView.delegate         = self
+        mainTableView.dataSource       = self
+        mainSearchBar.delegate         = self
     }
     
     //MARK: - Setup for Navigation Bar:
     
     
-    
-    //MARK: - Setup for Search Bar:
     
     //MARK: - FetchData from the API:
     
@@ -57,28 +54,34 @@ class MainViewController: UIViewController {
                 response in
                 switch response.result {
                 case .success(let shows):
-                    print("on my way:", shows)
-                    self.showsDataModel = shows
+                    self.showsData = shows
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
-                    print("=====\(self.showsDataModel.count)=======")
+                    self.filteredShowsData = self.showsData
                 case .failure(let error):
                     print("error", error.localizedDescription)
                 }
-                DispatchQueue.main.async {
-                    self.mainTableView.reloadData()
-                }
+                // DispatchQueue.main.async {
+                self.mainTableView.reloadData()
+                // }
             }
     }
     
+    //
+    
+    
 }
 
+//MARK: - Extensions
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController: UITableViewDelegate,
+                              UITableViewDataSource,
+                              UISearchBarDelegate {
+    
+    //MARK: - TableView extensions are here:
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(">>>> \(showsDataModel.count ) <<<<")
-        return showsDataModel.count
+        return filteredShowsData.count
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,12 +90,30 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTableViewCell", for: indexPath) as! ShowTableViewCell
-        let show = showsDataModel[indexPath.row]
+        let show = filteredShowsData[indexPath.row]
         let noRating = 0.0
         cell.nameLabel?.text = "\(show.name)"
         cell.detailLabel?.text = "Episode: \(show.number ?? 0) \nDuration: \(show.runtime ?? 0) min"
         cell.ratingLabel?.text = "Rating: \(show.rating?.average ?? noRating)"
         return cell
+    }
+    
+    //MARK: - SearchBar extensions are here:
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredShowsData = []
+        
+        if searchText == "" {
+            filteredShowsData = showsData
+        } else {
+            for show in showsData {
+                if show.name.lowercased().contains(searchText.lowercased()) {
+//                    print("search complete")
+                    self.filteredShowsData.append(show)
+                }
+            }
+        }
+        self.mainTableView.reloadData()
     }
     
 }
