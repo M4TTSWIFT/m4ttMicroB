@@ -9,6 +9,7 @@ import Foundation
 
 struct ShowsModel: Codable {
     
+    var id: Int
     var name: String
     var season: Int?
     var number: Int?

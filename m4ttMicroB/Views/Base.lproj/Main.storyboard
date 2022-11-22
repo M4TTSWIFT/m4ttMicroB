@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,31 +17,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vdv-fO-08z">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="e9v-k3-nNn">
+                                <rect key="frame" x="0.0" y="44" width="375" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SxZ-ow-8EW">
+                                <rect key="frame" x="0.0" y="95" width="375" height="523"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="puN-WV-ykg">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="puN-WV-ykg" id="gJe-VU-hD8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FyC-jT-er4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vdv-fO-08z" firstAttribute="trailing" secondItem="FyC-jT-er4" secondAttribute="trailing" id="1b2-Gs-YA7"/>
-                            <constraint firstItem="vdv-fO-08z" firstAttribute="leading" secondItem="FyC-jT-er4" secondAttribute="leading" id="3x4-6R-jv5"/>
-                            <constraint firstItem="vdv-fO-08z" firstAttribute="bottom" secondItem="FyC-jT-er4" secondAttribute="bottom" id="9kn-8a-pPG"/>
-                            <constraint firstItem="vdv-fO-08z" firstAttribute="top" secondItem="FyC-jT-er4" secondAttribute="top" id="t89-tm-BgE"/>
+                            <constraint firstItem="SxZ-ow-8EW" firstAttribute="leading" secondItem="FyC-jT-er4" secondAttribute="leading" id="Krb-Qy-N46"/>
+                            <constraint firstItem="e9v-k3-nNn" firstAttribute="top" secondItem="FyC-jT-er4" secondAttribute="top" id="Qp6-3D-Km9"/>
+                            <constraint firstItem="SxZ-ow-8EW" firstAttribute="bottom" secondItem="FyC-jT-er4" secondAttribute="bottom" id="YxE-5v-55O"/>
+                            <constraint firstItem="e9v-k3-nNn" firstAttribute="trailing" secondItem="FyC-jT-er4" secondAttribute="trailing" id="gNa-nA-cBZ"/>
+                            <constraint firstItem="SxZ-ow-8EW" firstAttribute="trailing" secondItem="FyC-jT-er4" secondAttribute="trailing" id="jhA-1U-xwQ"/>
+                            <constraint firstItem="e9v-k3-nNn" firstAttribute="leading" secondItem="FyC-jT-er4" secondAttribute="leading" id="rtP-75-iG0"/>
+                            <constraint firstItem="SxZ-ow-8EW" firstAttribute="top" secondItem="e9v-k3-nNn" secondAttribute="bottom" id="tkC-hC-fPm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="4EE-xd-7eU"/>
+                    <connections>
+                        <outlet property="favoritesSearchBar" destination="e9v-k3-nNn" id="Ine-Rs-UGv"/>
+                        <outlet property="favoritesTableView" destination="SxZ-ow-8EW" id="nao-hk-jz5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifJ-2i-d7f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -99,6 +101,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="statusBarColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="HL8-3j-L4B" kind="relationship" relationship="viewControllers" id="WER-pX-py1"/>
@@ -118,6 +121,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZXf-g6-rL1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -150,6 +156,9 @@
     </scenes>
     <resources>
         <image name="magazine.fill" catalog="system" width="113" height="128"/>
+        <namedColor name="statusBarColor">
+            <color red="0.10199999809265137" green="0.18799999356269836" blue="0.27099999785423279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

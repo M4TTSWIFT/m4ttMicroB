@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import Kingfisher
 
 class MainViewController: UIViewController {
     
@@ -25,7 +26,8 @@ class MainViewController: UIViewController {
     // UINib:
     private let nib = UINib(nibName: "ShowTableViewCell", bundle: nil)
     // URL Session:
-    private let dataURL = "https://api.tvmaze.com/schedule" // U can add/delete "/full" to more data
+    private let dataURL = "https://api.tvmaze.com/schedule" // U can add or delete "/full" to more data
+    private let noPicURL = URL(string: "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png")
     
     
     //MARK: - ViewDidLoad:
@@ -33,6 +35,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
+        setupNavigationBar()
         activityIndicator.startAnimating()
         filteredShowsData = showsData
         mainTableView.register(nib, forCellReuseIdentifier: "ShowTableViewCell")
@@ -43,7 +46,14 @@ class MainViewController: UIViewController {
     
     //MARK: - Setup for Navigation Bar:
     
-    
+    func setupNavigationBar() {
+        UIApplication.shared.statusBarUIView?.backgroundColor = UIColor(named: "statusBarColor")
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.backgroundColor = UIColor(named: "statusBarColor")
+        navigationController?.navigationBar.prefersLargeTitles = false
+        mainSearchBar.barTintColor = UIColor(named: "navBarColor")
+        mainSearchBar.searchTextField.backgroundColor = .white
+    }
     
     //MARK: - FetchData from the API:
     
@@ -67,9 +77,8 @@ class MainViewController: UIViewController {
             }
     }
     
-    //
-    
-    
+//MARK: - Other methods:
+
 }
 
 //MARK: - Extensions
@@ -92,6 +101,20 @@ extension MainViewController: UITableViewDelegate,
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTableViewCell", for: indexPath) as! ShowTableViewCell
         let show = filteredShowsData[indexPath.row]
         let noRating = 0.0
+        // showImageCircularView:
+        cell.showImage.layer.masksToBounds = false
+        cell.showImage.layer.cornerRadius = cell.showImage.frame.size.width / 2
+        cell.showImage.clipsToBounds = true
+        // ------------------------------------
+        cell.delegate = self
+        if show.image?.medium != nil {
+            cell.showImage.kf.setImage(with: URL(string: "\(show.image?.medium)"))
+        } else {
+            cell.showImage.kf.setImage(with: noPicURL)
+        }
+        
+        //cell.showImage.kf.setImage(with: noPicURL)
+        cell.likeButton.tag = indexPath.row
         cell.nameLabel?.text = "\(show.name)"
         cell.detailLabel?.text = "Episode: \(show.number ?? 0) \nDuration: \(show.runtime ?? 0) min"
         cell.ratingLabel?.text = "Rating: \(show.rating?.average ?? noRating)"
@@ -117,3 +140,5 @@ extension MainViewController: UITableViewDelegate,
     }
     
 }
+
+
