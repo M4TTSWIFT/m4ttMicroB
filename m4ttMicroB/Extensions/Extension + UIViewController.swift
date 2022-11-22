@@ -8,7 +8,8 @@
 import UIKit
 
 extension UIViewController: ShowTableViewCellDelegate {
+
     func didTapButton(_ tag: Int) {
-        print("I have pressed a button with tag \(tag)")
+        print("I have pressed a button with ID \(tag)")
         }
 }

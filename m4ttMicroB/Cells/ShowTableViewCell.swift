@@ -27,6 +27,13 @@ class ShowTableViewCell: UITableViewCell {
     
     @IBAction func didTapButton(_ sender: UIButton) {
         delegate?.didTapButton(sender.tag)
+        
+    }
+    
+    func setupCells(nameLabel: String, detailLabel: String, ratingLabel: String) {
+        self.nameLabel.text = nameLabel
+        self.detailLabel.text = detailLabel
+        self.ratingLabel.text = ratingLabel
     }
     
 

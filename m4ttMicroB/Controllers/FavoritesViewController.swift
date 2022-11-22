@@ -21,11 +21,23 @@ class FavoritesViewController: UIViewController {
     
     
     
-    
     //MARK: - ViewDidLoad:
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
+        
+    }
+    
+    //MARK: - Setup for Navigation Bar:
+    
+    func setupNavigationBar() {
+        UIApplication.shared.statusBarUIView?.backgroundColor = UIColor(named: "statusBarColor")
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.backgroundColor = UIColor(named: "statusBarColor")
+        navigationController?.navigationBar.prefersLargeTitles = false
+        favoritesSearchBar.barTintColor = UIColor(named: "navBarColor")
+        favoritesSearchBar.searchTextField.backgroundColor = .white
     }
     
 

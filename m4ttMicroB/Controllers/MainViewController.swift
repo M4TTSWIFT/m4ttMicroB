@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
     // UINib:
     private let nib = UINib(nibName: "ShowTableViewCell", bundle: nil)
     // URL Session:
-    private let dataURL = "https://api.tvmaze.com/schedule" // U can add or delete "/full" to more data
+    private let dataURL = "https://api.tvmaze.com/schedule/full" // U can add or delete "/full" to more data
     private let noPicURL = URL(string: "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png")
     
     
@@ -38,6 +38,12 @@ class MainViewController: UIViewController {
         setupNavigationBar()
         activityIndicator.startAnimating()
         filteredShowsData = showsData
+        setupTableView()
+    }
+    
+    //MARK: - TableView setup:
+    
+    func setupTableView() {
         mainTableView.register(nib, forCellReuseIdentifier: "ShowTableViewCell")
         mainTableView.delegate         = self
         mainTableView.dataSource       = self
@@ -53,6 +59,7 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         mainSearchBar.barTintColor = UIColor(named: "navBarColor")
         mainSearchBar.searchTextField.backgroundColor = .white
+        
     }
     
     //MARK: - FetchData from the API:
@@ -71,14 +78,14 @@ class MainViewController: UIViewController {
                 case .failure(let error):
                     print("error", error.localizedDescription)
                 }
-                // DispatchQueue.main.async {
-                self.mainTableView.reloadData()
-                // }
+                DispatchQueue.main.async {
+                    self.mainTableView.reloadData()
+                }
             }
     }
     
-//MARK: - Other methods:
-
+    //MARK: - Other methods:
+    
 }
 
 //MARK: - Extensions
@@ -101,23 +108,25 @@ extension MainViewController: UITableViewDelegate,
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTableViewCell", for: indexPath) as! ShowTableViewCell
         let show = filteredShowsData[indexPath.row]
         let noRating = 0.0
+        cell.delegate = self
         // showImageCircularView:
         cell.showImage.layer.masksToBounds = false
         cell.showImage.layer.cornerRadius = cell.showImage.frame.size.width / 2
         cell.showImage.clipsToBounds = true
-        // ------------------------------------
-        cell.delegate = self
-        if show.image?.medium != nil {
-            cell.showImage.kf.setImage(with: URL(string: "\(show.image?.medium)"))
+        // showImageNilCheck:
+        if show.image != nil {
+            if show.image?.medium != nil {
+                cell.showImage.kf.setImage(with: URL(string: "\(show.image!.medium!)"))
+            }
         } else {
             cell.showImage.kf.setImage(with: noPicURL)
         }
-        
-        //cell.showImage.kf.setImage(with: noPicURL)
-        cell.likeButton.tag = indexPath.row
-        cell.nameLabel?.text = "\(show.name)"
-        cell.detailLabel?.text = "Episode: \(show.number ?? 0) \nDuration: \(show.runtime ?? 0) min"
-        cell.ratingLabel?.text = "Rating: \(show.rating?.average ?? noRating)"
+        //-----------------------
+        cell.likeButton.tag = show.id
+        //-----------------------
+        cell.setupCells(nameLabel: show.name,
+                        detailLabel: "Episode: \(show.number ?? 0) \nDuration: \(show.runtime ?? 0) min",
+                        ratingLabel: "Rating: \(show.rating?.average ?? noRating)")
         return cell
     }
     
@@ -131,12 +140,13 @@ extension MainViewController: UITableViewDelegate,
         } else {
             for show in showsData {
                 if show.name.lowercased().contains(searchText.lowercased()) {
-//                    print("search complete")
                     self.filteredShowsData.append(show)
                 }
             }
         }
-        self.mainTableView.reloadData()
+        DispatchQueue.main.async {
+            self.mainTableView.reloadData()
+        }
     }
     
 }
