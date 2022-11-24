@@ -115,7 +115,6 @@ extension MainViewController: UITableViewDelegate,
         cell.showImage.clipsToBounds = true
         // showImageNilCheck:
         if show._embedded.show.image != nil {
-//        if    show.image != nil {
             if show._embedded.show.image?.medium != nil {
                 cell.showImage.kf.setImage(with: URL(string: "\(show._embedded.show.image!.medium!)"))
             }
@@ -127,9 +126,6 @@ extension MainViewController: UITableViewDelegate,
         //-----------------------
         cell.setupCells(nameLabel: show._embedded.show.name,
                         genresLabel: "\(show._embedded.show.genres)", ratingLabel: "Rating: \(show._embedded.show.rating?.average ?? noRating)")
-//        cell.setupCells(nameLabel: \(show._embedded.show.name),
-//                        detailLabel: "Episode: \(show.number ?? 0) \nDuration: \(show.runtime ?? 0) min",
-//                        ratingLabel: "Rating: \(show.rating?.average ?? noRating)")
         return cell
     }
     
@@ -151,7 +147,6 @@ extension MainViewController: UITableViewDelegate,
             self.mainTableView.reloadData()
         }
     }
-    
 }
 
 
