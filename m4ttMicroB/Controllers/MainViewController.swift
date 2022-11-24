@@ -84,9 +84,9 @@ class MainViewController: UIViewController {
             }
     }
     
+}
     //MARK: - Other methods:
     
-}
 
 //MARK: - Extensions
 
