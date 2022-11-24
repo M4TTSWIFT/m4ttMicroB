@@ -19,7 +19,7 @@ class ShowTableViewCell: UITableViewCell {
     
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var ratingLabel: UILabel!
     
@@ -30,9 +30,9 @@ class ShowTableViewCell: UITableViewCell {
         
     }
     
-    func setupCells(nameLabel: String, detailLabel: String, ratingLabel: String) {
+    func setupCells(nameLabel: String, genresLabel: String, ratingLabel: String) {
         self.nameLabel.text = nameLabel
-        self.detailLabel.text = detailLabel
+        self.genresLabel.text = genresLabel
         self.ratingLabel.text = ratingLabel
     }
     

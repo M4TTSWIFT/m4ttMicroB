@@ -7,21 +7,52 @@
 
 import Foundation
 
-struct ShowsModel: Codable {
+public struct ShowsModel: Codable {
+
+    var _embedded: Embedded
     
-    var id: Int
-    var name: String
-    var season: Int?
-    var number: Int?
-    var runtime: Int?
-    var rating: Rating?
-    var image: Image?
+    struct Embedded: Codable {
+        var show: Show
+    }
+    
+    struct Show: Codable {
+        var id: Int
+        var name: String
+        var genres: [String]
+        var rating: Rating?
+        var image: Image?
+        
+    }
+    
+    struct Rating: Codable {
+        var average: Double?
+    }
+    
+    struct Image: Codable {
+        var medium: String?
+    }
 }
+    
+    
+    
 
-struct Rating: Codable {
-    var average: Double?
-}
 
-struct Image: Codable {
-    var medium: String?
-}
+
+//struct ShowsModel: Codable {
+//
+//    var id: Int
+//    var name: String
+//    var season: Int?
+//    var number: Int?
+//    var runtime: Int?
+//    var rating: Rating?
+//    var image: Image?
+//}
+//
+//struct Rating: Codable {
+//    var average: Double?
+//}
+//
+//struct Image: Codable {
+//    var medium: String?
+//}

@@ -114,19 +114,22 @@ extension MainViewController: UITableViewDelegate,
         cell.showImage.layer.cornerRadius = cell.showImage.frame.size.width / 2
         cell.showImage.clipsToBounds = true
         // showImageNilCheck:
-        if show.image != nil {
-            if show.image?.medium != nil {
-                cell.showImage.kf.setImage(with: URL(string: "\(show.image!.medium!)"))
+        if show._embedded.show.image != nil {
+//        if    show.image != nil {
+            if show._embedded.show.image?.medium != nil {
+                cell.showImage.kf.setImage(with: URL(string: "\(show._embedded.show.image!.medium!)"))
             }
         } else {
             cell.showImage.kf.setImage(with: noPicURL)
         }
         //-----------------------
-        cell.likeButton.tag = show.id
+        cell.likeButton.tag = show._embedded.show.id
         //-----------------------
-        cell.setupCells(nameLabel: show.name,
-                        detailLabel: "Episode: \(show.number ?? 0) \nDuration: \(show.runtime ?? 0) min",
-                        ratingLabel: "Rating: \(show.rating?.average ?? noRating)")
+        cell.setupCells(nameLabel: show._embedded.show.name,
+                        genresLabel: "\(show._embedded.show.genres)", ratingLabel: "Rating: \(show._embedded.show.rating?.average ?? noRating)")
+//        cell.setupCells(nameLabel: \(show._embedded.show.name),
+//                        detailLabel: "Episode: \(show.number ?? 0) \nDuration: \(show.runtime ?? 0) min",
+//                        ratingLabel: "Rating: \(show.rating?.average ?? noRating)")
         return cell
     }
     
@@ -139,7 +142,7 @@ extension MainViewController: UITableViewDelegate,
             filteredShowsData = showsData
         } else {
             for show in showsData {
-                if show.name.lowercased().contains(searchText.lowercased()) {
+                if show._embedded.show.name.lowercased().contains(searchText.lowercased()) {
                     self.filteredShowsData.append(show)
                 }
             }

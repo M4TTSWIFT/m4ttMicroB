@@ -52,7 +52,7 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="detailLabel" destination="iiF-XX-WEX" id="qVf-tZ-HTO"/>
+                <outlet property="genresLabel" destination="iiF-XX-WEX" id="qVf-tZ-HTO"/>
                 <outlet property="likeButton" destination="KD3-s5-RGo" id="PSd-KY-F9r"/>
                 <outlet property="nameLabel" destination="fMD-uu-TeT" id="o3E-4q-BfQ"/>
                 <outlet property="ratingLabel" destination="uQf-rJ-XEX" id="sg1-U6-Sgd"/>
