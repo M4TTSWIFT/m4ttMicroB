@@ -108,7 +108,6 @@ extension MainViewController: UITableViewDelegate,
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTableViewCell", for: indexPath) as! ShowTableViewCell
         let show = filteredShowsData[indexPath.row]
         let noRating = 0.0
-        cell.delegate = self
         // showImageCircularView:
         cell.showImage.layer.masksToBounds = false
         cell.showImage.layer.cornerRadius = cell.showImage.frame.size.width / 2
@@ -122,10 +121,12 @@ extension MainViewController: UITableViewDelegate,
             cell.showImage.kf.setImage(with: noPicURL)
         }
         //-----------------------
-        cell.likeButton.tag = show._embedded.show.id
+        cell.likeOutlet.tag = show._embedded.show.id
         //-----------------------
         cell.setupCells(nameLabel: show._embedded.show.name,
-                        genresLabel: "\(show._embedded.show.genres)", ratingLabel: "Rating: \(show._embedded.show.rating?.average ?? noRating)")
+                        genresLabel: "\(show._embedded.show.genres)", ratingLabel: "Rating: \(show._embedded.show.rating?.average ?? noRating)",
+                        id: show._embedded.show.id,
+                        indexPath: indexPath)
         return cell
     }
     

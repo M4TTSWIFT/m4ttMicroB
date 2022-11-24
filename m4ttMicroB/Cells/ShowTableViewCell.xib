@@ -27,9 +27,6 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="appUnlike"/>
-                        <connections>
-                            <action selector="didTapButton:" destination="AgX-Ic-Qiy" eventType="touchUpInside" id="hlJ-AX-JfX"/>
-                        </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2f-We-EKq">
                         <rect key="frame" x="6" y="5" width="110" height="110"/>
@@ -53,7 +50,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="genresLabel" destination="iiF-XX-WEX" id="qVf-tZ-HTO"/>
-                <outlet property="likeButton" destination="KD3-s5-RGo" id="PSd-KY-F9r"/>
+                <outlet property="likeOutlet" destination="KD3-s5-RGo" id="PSd-KY-F9r"/>
                 <outlet property="nameLabel" destination="fMD-uu-TeT" id="o3E-4q-BfQ"/>
                 <outlet property="ratingLabel" destination="uQf-rJ-XEX" id="sg1-U6-Sgd"/>
                 <outlet property="showImage" destination="Z2f-We-EKq" id="bYP-1H-eJ0"/>
