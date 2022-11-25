@@ -14,7 +14,7 @@ class FavoritesViewController: UIViewController {
     let storage = Storage.shared
     
     //MARK: - Outlets:
-
+    
     @IBOutlet weak var favoritesSearchBar: UISearchBar!
     @IBOutlet weak var favoritesTableView: UITableView!
     
@@ -29,7 +29,7 @@ class FavoritesViewController: UIViewController {
     
     
     //MARK: - ViewDidLoad:
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -38,7 +38,7 @@ class FavoritesViewController: UIViewController {
         favoritesTableView.register(UINib(nibName: "ShowTableViewCell",
                                           bundle: nil),
                                     forCellReuseIdentifier: "ShowTableViewCell")
-
+        
     }
     
     //MARK: - ViewWillAppear:
@@ -93,21 +93,18 @@ extension FavoritesViewController: UITableViewDelegate,
                                   ratingLabel: item.ratingLabel)
         return cell
     }
- 
+    
     //MARK: - SearchBar extensions are here:
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         sortedFavoriteData = []
         
         if searchText == "" {
             sortedFavoriteData = searchBarFilter.filteredShowsData
-
-//            filteredShowsData = showsData
         } else {
             for show in searchBarFilter.filteredShowsData {
                 if show._embedded.show.name.lowercased().contains(searchText.lowercased()) {
                     sortedFavoriteData.append(show)
-//                    searchBarFilter.filteredShowsData.append(show)
                 }
             }
         }
@@ -115,5 +112,5 @@ extension FavoritesViewController: UITableViewDelegate,
             self.favoritesTableView.reloadData()
         }
     }
-
+    
 }

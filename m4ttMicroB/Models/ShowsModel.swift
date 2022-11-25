@@ -8,7 +8,7 @@
 import Foundation
 
 public struct ShowsModel: Codable {
-
+    
     var _embedded: Embedded
     
     struct Embedded: Codable {
@@ -32,27 +32,3 @@ public struct ShowsModel: Codable {
         var medium: String?
     }
 }
-    
-    
-    
-
-
-
-//struct ShowsModel: Codable {
-//
-//    var id: Int
-//    var name: String
-//    var season: Int?
-//    var number: Int?
-//    var runtime: Int?
-//    var rating: Rating?
-//    var image: Image?
-//}
-//
-//struct Rating: Codable {
-//    var average: Double?
-//}
-//
-//struct Image: Codable {
-//    var medium: String?
-//}
