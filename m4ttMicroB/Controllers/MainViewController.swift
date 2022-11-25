@@ -22,7 +22,8 @@ class MainViewController: UIViewController {
     // Model:
     var showsData = [ShowsModel]()
     // SearchBar:
-    var filteredShowsData: [ShowsModel]!
+//    var filteredShowsData: [ShowsModel]!
+    let searchBarFilter = FavoriteSearch.shared
     // UINib:
     private let nib = UINib(nibName: "ShowTableViewCell", bundle: nil)
     // URL Session:
@@ -37,8 +38,16 @@ class MainViewController: UIViewController {
         fetchData()
         setupNavigationBar()
         activityIndicator.startAnimating()
-        filteredShowsData = showsData
+//        filteredShowsData = showsData
+        searchBarFilter.filteredShowsData = showsData
         setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchBarFilter.filteredShowsData = []
+        searchBarFilter.filteredShowsData = showsData
+
     }
     
     //MARK: - TableView setup:
@@ -74,7 +83,9 @@ class MainViewController: UIViewController {
                     self.showsData = shows
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
-                    self.filteredShowsData = self.showsData
+//                    self.filteredShowsData = self.showsData
+                    self.searchBarFilter.filteredShowsData = self.showsData
+
                 case .failure(let error):
                     print("error", error.localizedDescription)
                 }
@@ -92,12 +103,23 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate,
                               UITableViewDataSource,
-                              UISearchBarDelegate {
+                              UISearchBarDelegate
+//                              LikeUnlikeDelegate
+                                {
+    
+//    //MARK: - Delegate
+//
+//    func didTapLike() {
+//        self.mainTableView.reloadData()
+//    }
+    
     
     //MARK: - TableView extensions are here:
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredShowsData.count
+        return searchBarFilter.filteredShowsData.count
+
+//        return filteredShowsData.count
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -106,7 +128,9 @@ extension MainViewController: UITableViewDelegate,
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTableViewCell", for: indexPath) as! ShowTableViewCell
-        let show = filteredShowsData[indexPath.row]
+        let show =         searchBarFilter.filteredShowsData[indexPath.row]
+
+//        let show = filteredShowsData[indexPath.row]
         let noRating = 0.0
         // showImageCircularView:
         cell.showImage.layer.masksToBounds = false
@@ -124,7 +148,7 @@ extension MainViewController: UITableViewDelegate,
         cell.likeOutlet.tag = show._embedded.show.id
         //-----------------------
         cell.setupCells(nameLabel: show._embedded.show.name,
-                        genresLabel: "\(show._embedded.show.genres)", ratingLabel: "Rating: \(show._embedded.show.rating?.average ?? noRating)",
+                        genresLabel: "\(show._embedded.show.genres.joined(separator: ", "))", ratingLabel: "Rating: \(show._embedded.show.rating?.average ?? noRating)",
                         id: show._embedded.show.id,
                         indexPath: indexPath)
         return cell
@@ -133,14 +157,19 @@ extension MainViewController: UITableViewDelegate,
     //MARK: - SearchBar extensions are here:
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredShowsData = []
+//        filteredShowsData = []
+        searchBarFilter.filteredShowsData = []
+
         
         if searchText == "" {
-            filteredShowsData = showsData
+            searchBarFilter.filteredShowsData = showsData
+
+//            filteredShowsData = showsData
         } else {
             for show in showsData {
                 if show._embedded.show.name.lowercased().contains(searchText.lowercased()) {
-                    self.filteredShowsData.append(show)
+//                    self.filteredShowsData.append(show)
+                    searchBarFilter.filteredShowsData.append(show)
                 }
             }
         }

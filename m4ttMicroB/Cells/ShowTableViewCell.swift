@@ -8,12 +8,16 @@
 import UIKit
 import RealmSwift
 
+protocol LikeUnlikeDelegate {
+    func didTapLike()
+}
+
 class ShowTableViewCell: UITableViewCell {
     
     
     let storage = Storage.shared
-    var idsArray = [Int]()
     private var isLiked = false
+    var delegate: LikeUnlikeDelegate!
     
     //MARK: - Outlets:
     
@@ -30,13 +34,12 @@ class ShowTableViewCell: UITableViewCell {
                     ratingLabel: String,
                     id: Int,
                     indexPath: IndexPath) {
-        idsArray.append(id)
+        // peredat like?
         self.likeOutlet.tag = indexPath.row
         self.likeOutlet.addTarget(self, action: #selector(likePressed), for: .touchUpInside)
         self.nameLabel.text = nameLabel
         self.genresLabel.text = genresLabel
         self.ratingLabel.text = ratingLabel
-        setUI(likeOutlet)
     }
     
     func setupCellForFavorite(nameLabel: String,
@@ -49,7 +52,7 @@ class ShowTableViewCell: UITableViewCell {
         self.ratingLabel.text = ratingLabel
     }
     
-    public func flipLikedState() {
+    private func flipLikedState() {
         isLiked = !isLiked
         animate()
     }
@@ -68,19 +71,8 @@ class ShowTableViewCell: UITableViewCell {
         })
     }
     
-    private func setUI(_ sender: UIButton) {
- 
-        //        if storage.results[sender.tag].id == sender.tag {
-        //                    likeOutlet.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        //        } else {
-        //            likeOutlet.setImage(UIImage(systemName: "heart"), for: .normal)
-        //        }
-    }
     
     @objc func likePressed(sender: UIButton) {
-        
-        
-        //        if !idsArray.contains(storage.results[sender.tag].id) {
         let items = FavoritesModel()
         items.nameLabel = nameLabel.text!
         items.genresLabel = genresLabel.text!
@@ -88,7 +80,6 @@ class ShowTableViewCell: UITableViewCell {
         items.id = likeOutlet.tag
         storage.save(items)
         flipLikedState()
-        //        }
         
         
         
@@ -97,7 +88,7 @@ class ShowTableViewCell: UITableViewCell {
     @objc func dislikePressed(sender: UIButton) {
         flipLikedState()
         storage.remove(sender.tag)
-        
+        delegate.didTapLike()
     }
     
 }

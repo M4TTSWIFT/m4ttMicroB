@@ -12,7 +12,6 @@ class FavoritesViewController: UIViewController {
     //MARK: -  Storage Data:
     
     let storage = Storage.shared
-
     
     //MARK: - Outlets:
 
@@ -22,6 +21,9 @@ class FavoritesViewController: UIViewController {
     
     
     //MARK: - Variebles data:
+    
+    var searchBarFilter = FavoriteSearch.shared // filteredShowsData
+    var sortedFavoriteData = [ShowsModel]()
     
     
     
@@ -36,13 +38,15 @@ class FavoritesViewController: UIViewController {
         favoritesTableView.register(UINib(nibName: "ShowTableViewCell",
                                           bundle: nil),
                                     forCellReuseIdentifier: "ShowTableViewCell")
-        
+
     }
     
     //MARK: - ViewWillAppear:
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        searchBarFilter.filteredShowsData = []
+        searchBarFilter.filteredShowsData = sortedFavoriteData
         favoritesTableView.reloadData()
         print("FavoritesViewController")
     }
@@ -57,15 +61,18 @@ class FavoritesViewController: UIViewController {
         favoritesSearchBar.barTintColor = UIColor(named: "navBarColor")
         favoritesSearchBar.searchTextField.backgroundColor = .white
     }
-    
-
 }
 
 //MARK: - Extensions:
 
 extension FavoritesViewController: UITableViewDelegate,
                                    UITableViewDataSource,
-                                   UISearchBarDelegate {
+                                   UISearchBarDelegate,
+                                   LikeUnlikeDelegate {
+    func didTapLike() {
+        self.favoritesTableView.reloadData()
+    }
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,12 +86,34 @@ extension FavoritesViewController: UITableViewDelegate,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShowTableViewCell", for: indexPath) as! ShowTableViewCell
         let item = storage.results[indexPath.row]
-        
+        cell.delegate = self
         cell.likeOutlet.tag = indexPath.row
         cell.setupCellForFavorite(nameLabel: item.nameLabel,
                                   genresLabel: item.genresLabel,
                                   ratingLabel: item.ratingLabel)
         return cell
     }
-    
+ 
+    //MARK: - SearchBar extensions are here:
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        sortedFavoriteData = []
+        
+        if searchText == "" {
+            sortedFavoriteData = searchBarFilter.filteredShowsData
+
+//            filteredShowsData = showsData
+        } else {
+            for show in searchBarFilter.filteredShowsData {
+                if show._embedded.show.name.lowercased().contains(searchText.lowercased()) {
+                    sortedFavoriteData.append(show)
+//                    searchBarFilter.filteredShowsData.append(show)
+                }
+            }
+        }
+        DispatchQueue.main.async {
+            self.favoritesTableView.reloadData()
+        }
+    }
+
 }

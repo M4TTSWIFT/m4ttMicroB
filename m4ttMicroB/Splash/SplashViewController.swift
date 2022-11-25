@@ -41,21 +41,12 @@ class SplashViewController: UIViewController {
         })
         UIView.animate(withDuration: 1.5, animations: {
             self.imageView.alpha = 0
-        }, completion: {done in
+        }, completion: { done in
             if done {
                 self.performSegue(withIdentifier: "goToApp", sender: nil)
-//                let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
-//                let navController = UINavigationController(rootViewController: mainVC)
-//
-//                navController.modalPresentationStyle = .fullScreen
-//                self.present(navController, animated:true, completion: nil)
             }
         })
     }
-    
-    
-    
-    
 }
     
     
